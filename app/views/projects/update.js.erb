@@ -1,2 +1,3 @@
 $('div#project_<%= @project.id %>_name').html('<%= escape_javascript(@project.name) %>');
+$('div#project_<%= @project.id %>_description').html('<%= escape_javascript(@project.description) %>');
 $('div#project_<%= @project.id %>_name').removeAttr('title');

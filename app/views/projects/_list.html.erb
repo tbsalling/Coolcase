@@ -1,22 +1,41 @@
 <script type='text/javascript'>
     $(document).ready(
             function () {
-                $(".edit").each(
-                function (i) {
-                    $(this).editable("/projects/" + $(this).parent().attr('id') + '.js', {
-                        method    : 'PUT',
-                        type      : 'textarea',
-                        cancel    : 'Cancel',
-                        submit    : 'OK',
-                        indicator : "Saving...",
-                        tooltip   : 'Click to edit...',
-                        name      : 'project[name]',
-                        intercept: function (js) {
-                           eval(js);
-                        }
-                    })
-            })
- }) ;
+                $(".edit_name").each(
+                        function (i) {
+                            $(this).editable("/projects/" + $(this).parent().parent().attr('id') + '.js', {
+                                method:'PUT',
+                                type:'text',
+                                cancel:'Cancel',
+                                submit:'OK',
+                                indicator:"Saving...",
+                                tooltip:'Click to edit...',
+                                name:'project[name]',
+                                intercept:function (js) {
+                                    eval(js);
+                                }
+                            })
+                        })
+
+                $(".edit_description").each(
+                        function (i) {
+                            $(this).editable("/projects/" + $(this).parent().parent().attr('id') + '.js', {
+                                method:'PUT',
+                                type:'textarea',
+                                rows: 8,
+                                cols: 40,
+                                cancel:'Cancel',
+                                submit:'OK',
+                                indicator:"Saving...",
+                                tooltip:'Click to edit...',
+                                name:'project[description]',
+                                intercept:function (js) {
+                                    eval(js);
+                                }
+                            })
+                        })
+            }
+    );
 </script>
 
 <table id="projects">
@@ -30,16 +49,20 @@
   </tr>
   </thead>
   <tbody>
-<% @projects.each do |project| %>
-  <tr>
-    <td id="<%= project.id %>"><div id="project_<%= project.id %>_name" class="edit"><%= project.name %></div></td>
-    <td><%= project.description %></td>
-    <td>
-        <%= link_to 'Show', project %>
-        <%= link_to "Edit", edit_project_path(project, :format => :js), :remote => true %>
-        <%= link_to 'Destroy', project, :remote => true, :confirm => 'Are you sure?', :method => :delete %>
-    </td>
-  </tr>
-  </tbody>
-<% end %>
-</table>
+  <% @projects.each do |project| %>
+      <tr id="<%= project.id %>">
+        <td>
+          <div id="project_<%= project.id %>_name" class="edit_name"><%= project.name %></div>
+        </td>
+        <td>
+          <div id="project_<%= project.id %>_description" class="edit_description"><%= project.description %></div>
+        </td>
+        <td>
+          <%= link_to 'Show', project %>
+          <%= link_to "Edit", edit_project_path(project, :format => :js), :remote => true %>
+          <%= link_to 'Destroy', project, :remote => true, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+      </tbody>
+  <% end %>
+  </table>
