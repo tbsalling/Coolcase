@@ -1,0 +1,8 @@
+$('tr#project<%= @project.id %>')
+  .html(" \
+    <% form_for(@project, :remote => true) do |f| %> \
+        <td>x<%= f.text_field :name %></td>     \
+        <td>x<%= f.text_field :description %> </td>     \
+        <td>action </td>     \
+    <% end %>  \
+  ");

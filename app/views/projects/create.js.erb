@@ -1,0 +1,2 @@
+$("#new-project-form").slideUp();
+$('#projects tr:last').after('<tr><td><%= @project.name %></td><td><%= @project.description %></td><td><%= link_to 'Show',@project %> <%= link_to 'Edit', edit_project_path(@project) %> <%= link_to 'Destroy', @project, :confirm => 'Are you sure?', :method => :delete %></td></tr>');
