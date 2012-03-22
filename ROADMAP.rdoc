@@ -1,0 +1,15 @@
+Upgrade to more advanced UI, e.g. ExtJS UI
+Clearer REST i/f on server
+Prettier styling
+More ajax
+JSON REST interface
+Authentication login/logout
+Sessions on server
+MongoDB instead of SQLite3
+Functional tests of controllers
+Integration tests of e.g. new actor -> in @project
+Cucumber tests
+Expand with user stories
+Expand with UML use case diagram
+Expand with revision tracking
+

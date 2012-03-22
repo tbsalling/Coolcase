@@ -14,6 +14,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    @actors = @project.actors
+#    @usecases = @project.usecases
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +30,7 @@ class ProjectsController < ApplicationController
     @project = Project.new
 
     respond_to do |format|
-      format.html # new.html.erb
+    #  format.html # new.html.erb
       format.json { render :json => @project }
       format.js
     end

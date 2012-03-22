@@ -1,0 +1,61 @@
+<script type='text/javascript'>
+    function addTableRow(jQtable) {
+        jQtable.each(function () {
+            var $table = $(this);
+            // Number of td's in the last table row
+            var n = $('tr:last td', this).length;
+            var tds = '<tr>';
+            for (var i = 0; i < n; i++) {
+                tds += '<td>&nbsp;</td>';
+            }
+            tds += '</tr>';
+            if ($('tbody', this).length > 0) {
+                $('tbody', this).append(tds);
+            } else {
+                $(this).append(tds);
+            }
+        });
+    }
+
+    $(document).ready(
+            function () {
+                $("#actor_new").click(
+                        function () {
+                            addTableRow($("#actors"));
+                            $('#actors tbody tr:last').html(' \
+                                    <%= form_for(@project, :remote => true) do |f| %> \
+                                    <td class="edit_actor_name"><%= escape_javascript f.text_field :name %></td> \
+                                    <td class="edit_actor_desc"><%= escape_javascript f.text_area :description %></td> \
+                                    <td></td> \
+                                    <% end %>
+                            ');
+                        }
+                )
+            }
+    )
+</script>
+
+<table id="actors">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  <% @actors.each do |actor| %>
+      <tr>
+        <td><%= actor.name %></td>
+        <td><%= actor.description %></td>
+        <td>
+
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="action" id="actor_new"><a>Add actor</a></div>

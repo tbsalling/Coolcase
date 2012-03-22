@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @project.name %>
-</p>
+<h1><%= @project.name %></h1>
+<div><%= @project.description %></div>
 
-<p>
-  <b>Description:</b>
-  <%= @project.description %>
-</p>
+<h3>Actors</h3>
+<%= render 'actors/list' %>
+
+<h3>Use cases</h3>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
